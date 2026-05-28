@@ -1,16 +1,16 @@
 # LinkedIn 360-Degree Analysis Skill
 
-Synthesize your LinkedIn recommendations into a comprehensive strength profile using Claude AI. No server, no cost to you—runs on the user's tokens.
+Synthesize your LinkedIn recommendations into a comprehensive strength profile using Claude AI. Runs on the user's tokens in their account.
 
 ## What It Does
 
 Takes 10+ LinkedIn recommendations and analyzes them across three professional frameworks:
 
 - **Universal Mode** — 7 core dimensions (intellectual depth, execution, technical mastery, customer obsession, cross-functional leadership, people development, personal excellence)
-- **Executive Mode** — 9 dimensions organized in 3 tiers (Strategic Leadership, People Leadership, Foundational Excellence) + tier-level assessment
+- **Executive Mode** — 9 dimensions organized in 3 tiers based on Mckinsey's framework (Strategic Leadership, People Leadership, Foundational Excellence) + tier-level assessment
 - **Reforge PM Mode** — 8 PM competencies (strategy, execution, data, user research, design collaboration, technical acumen, cross-functional leadership, communication) + PM archetype analysis
 
-Perfect for:
+Intended for:
 - Job candidates preparing for executive interviews
 - Career transitions and positioning
 - Understanding how different people perceive you
@@ -58,7 +58,7 @@ Each framework provides:
 
 ### Example Output
 
-See `example-output.html` for a complete sample analysis across all three frameworks.
+See `vijay_360_complete_analysis[1]-output.html` for a complete sample analysis across all three frameworks.
 
 ## Frameworks Explained
 
@@ -72,7 +72,7 @@ Output includes:
 - Positioning for different role types
 
 ### Executive Mode
-Best for: VP/Director/C-level positioning, executive interviews
+Based off Mckinsey's framework. Best for: VP/Director/C-level positioning, executive interviews
 
 Output includes:
 - 3-tier scorecard (Strategic Leadership ✓✓✓, People Leadership ✓✓✓, Foundational Excellence ✓✓✓)
@@ -82,7 +82,7 @@ Output includes:
 - Ready for executive search conversations
 
 ### Reforge PM Mode
-Best for: PM-specific roles (Senior PM, PM Manager, Director PM)
+Based off Reforge's PM strength framework. Best for: PM-specific roles (Senior PM, PM Manager, Director PM)
 
 Output includes:
 - 8 PM competencies with readiness ratings
@@ -103,17 +103,11 @@ This is the actual skill definition. It includes:
 - Edge case handling
 
 ## Token Cost
-
-**Zero for you.**
-
-- **Claude.ai users:** Uses their free or paid Claude tokens (they pay, not you)
+- **Claude.ai users:** Uses your free or paid Claude tokens 
 - **API users:** Uses the user's API tokens
-- **No infrastructure:** No servers, no hosting costs
-
 This is completely decentralized—the skill is just a prompt template.
 
 ## Privacy
-
 - Recommendations only go to Claude (Anthropic's API)
 - Data does NOT touch this repo or any third-party server
 - Each user's analysis is independent

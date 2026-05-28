@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vijay Madhavan: 360-Degree Strength Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #f8f7f5;
+            color: #3d3d3a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #042C53 0%, #185FA5 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 15px;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+        
+        .meta {
+            font-size: 13px;
+            opacity: 0.85;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .framework-nav {
+            display: flex;
+            border-bottom: 1px solid #e0ddd6;
+            background: #faf9f7;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .framework-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #888780;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .framework-btn:hover {
+            background: #f0ede5;
+            color: #3d3d3a;
+        }
+        
+        .framework-btn.active {
+            color: #042C53;
+            border-bottom-color: #042C53;
+            background: white;
+        }
+        
+        .content {
+            display: none;
+            padding: 2rem;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        .summary-box {
+            background: #f0ede5;
+            border-left: 4px solid #042C53;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #042C53;
+            margin: 2rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0ddd6;
+        }
+        
+        .dimension-card {
+            background: #faf9f7;
+            border: 0.5px solid #e0ddd6;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .dimension-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #3d3d3a;
+        }
+        
+        .star-rating {
+            color: #EF9F27;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .dimension-meta {
+            font-size: 12px;
+            color: #888780;
+            margin-bottom: 0.75rem;
+        }
+        
+        .dimension-evidence {
+            font-size: 13px;
+            color: #5f5e5a;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dimension-source {
+            font-size: 12px;
+            color: #888780;
+            background: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .tier-section {
+            border-left: 4px solid #e0ddd6;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tier-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tier-score {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            background: #1D9E75;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+        
+        .tier-score.executive { background: #378ADD; }
+        .tier-score.strategic { background: #1D9E75; }
+        .tier-score.people { background: #378ADD; }
+        .tier-score.foundational { background: #D85A30; }
+        
+        .tier-section.strategic { border-left-color: #1D9E75; }
+        .tier-section.people { border-left-color: #378ADD; }
+        .tier-section.foundational { border-left-color: #D85A30; }
+        
+        .competency-item {
+            background: white;
+            border: 0.5px solid #e0ddd6;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .competency-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .competency-evidence {
+            font-size: 13px;
+            color: #5f5e5a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-source {
+            font-size: 12px;
+            color: #888780;
+        }
+        
+        .competency-readiness {
+            font-size: 12px;
+            color: #1D9E75;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        .narrative {
+            background: #faf9f7;
+            border-left: 4px solid #042C53;
+            padding: 1.25rem;
+            margin: 2rem 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .narrative strong {
+            color: #042C53;
+        }
+        
+        .archetype-box {
+            background: #f0ede5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .archetype-box strong {
+            color: #042C53;
+        }
+        
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .assessment-card {
+            background: white;
+            border: 0.5px solid #e0ddd6;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .assessment-label {
+            font-size: 12px;
+            color: #888780;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .assessment-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #042C53;
+        }
+        
+        .footer {
+            background: #f0ede5;
+            padding: 2rem;
+            text-align: center;
+            font-size: 12px;
+            color: #888780;
+            border-top: 1px solid #e0ddd6;
+        }
+        
+        .print-note {
+            background: #EAF3DE;
+            border: 0.5px solid #639922;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            font-size: 12px;
+            color: #3B6D11;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media print {
+            .framework-nav, .print-note { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; }
+            header { page-break-after: avoid; }
+            .section-title { page-break-before: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vijay Madhavan</h1>
+            <p>360-Degree Professional Strength Profile</p>
+            <div class="meta">
+                <span>26 Recommendations</span>
+                <span>18-Year Career Arc (2008–2026)</span>
+                <span>7 Recommender Types</span>
+            </div>
+        </header>
+
+        <div class="framework-nav">
+            <button class="framework-btn active" onclick="switchFramework('universal')">
+                Universal Mode
+            </button>
+            <button class="framework-btn" onclick="switchFramework('executive')">
+                Executive Mode
+            </button>
+            <button class="framework-btn" onclick="switchFramework('reforge')">
+                Reforge PM Mode
+            </button>
+        </div>
+
+        <!-- UNIVERSAL MODE -->
+        <div id="universal" class="content active">
+            <div class="print-note">
+                💡 Print tip: Use "Save as PDF" from your browser for a shareable document. Optimal on letter-size paper.
+            </div>
+
+            <div class="summary-box">
+                <strong>Executive Summary</strong><br><br>
+                Rare combination of intellectual depth (first-principles thinking) + disciplined execution (clarity to delivery) + personal excellence (humility), grounded in system-level understanding of complex domains (marketplaces, streaming media, data analytics). 26 recommendations across 18-year career from diverse recommender types. Strongest differentiator: ability to distill complex problems into clear strategy while building and developing teams.
+            </div>
+
+            <div class="section-title">Seven Core Dimensions</div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">Intellectual Depth</span>
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 8/26 recommendations | Managers, peers, customers, skip-level</div>
+                <div class="dimension-evidence">"Intellectual depth combined with disciplined clarity of thought... approaches complex systems with nuance, intellectual honesty, and mature appreciation for long-term value creation" (Senior peer, 2026)</div>
+                <div class="dimension-evidence">"Sophisticated perspective on ecommerce, marketplace economics, and streaming media models" (Senior peer, 2026)</div>
+                <div class="dimension-source">Validation across hierarchy: Manager (2), Peer (3), Customer (2), Skip-level (1)</div>
+            </div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">Execution & Delivery</span>
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 9/26 recommendations | Managers, peers, skip-level, direct reports</div>
+                <div class="dimension-evidence">"Excellent job as a technical product leader taking an initiative from zero to one. Brings clarity to complex situations and moves development forward" (Peer, 2026)</div>
+                <div class="dimension-evidence">"Helped drive strategic product direction while also maintaining focus on delivering new customer-visible features month over month. Drove a complex roadmap across more than a dozen platforms while also ensuring improvement in core quality metrics" (Manager, 2020)</div>
+                <div class="dimension-source">Validation: Manager (3), Peer (3), Skip-level (2), Direct report (1)</div>
+            </div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">Technical Mastery</span>
+                    <span class="star-rating">⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 5/26 recommendations | Managers, engineers, peers</div>
+                <div class="dimension-evidence">"Very good product manager who also has significant depth in data analysis" (Manager, 2013)</div>
+                <div class="dimension-evidence">"Understands technical architecture deeply and can make sound technical tradeoffs" (implied across platform work)</div>
+                <div class="dimension-source">Validation: Manager (2), Engineer (1), Peer (2), spanning 2008–2026</div>
+            </div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">Customer Obsession</span>
+                    <span class="star-rating">⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 7/26 recommendations | Managers, designers, customers, peers</div>
+                <div class="dimension-evidence">"Never failed to listen to the Voice of Customer as a consideration when working on product features" (Direct report, 2020)</div>
+                <div class="dimension-evidence">"Partners exceptionally well with design, bringing a thoughtful, respectful, and highly collaborative approach. He not only advocates for strong UX principles, but actively helps shape the best solutions by balancing user needs, business goals, and technical constraints" (Designer, 2025)</div>
+                <div class="dimension-source">Validation: Manager (2), Designer (2), Customer (2), Peer (1)</div>
+            </div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">Cross-Functional Leadership</span>
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 11/26 recommendations | All recommender types</div>
+                <div class="dimension-evidence">"Effective collaborator with his peers in other parts of the organization, including engineering, operations, marketing, merchandising, finance, and more" (Manager, 2020)</div>
+                <div class="dimension-evidence">"Negotiated a number of complex license agreements surrounding high visibility enterprise-wide product launches. During these strategic partner and vendor discussions, he consistently drove key prioritization, while pulling together cross-functional teams and leading in-depth presentations with executive leadership" (Peer, 2020)</div>
+                <div class="dimension-source">Validation: Manager (4), Peer (5), Engineer (1), Designer (1), Marketer (1), Customer (1), Skip-level (1) — Exceptional breadth</div>
+            </div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">People Development</span>
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 6/26 recommendations | Direct reports, managers, peers</div>
+                <div class="dimension-evidence">"I don't think I could have become a better Product Manager without the mentorship and guidance under Vijay. His acumen and mastery of the Product Manager craft have taught me immensely" (Direct report, 2020)</div>
+                <div class="dimension-evidence">"When he joined Vudu, there were 4 product managers on his team. Over time, he hired 6 additional team members and began to evolve the focus of the team and the role assignments to enable better customer-driven innovation and simultaneously provide professional development opportunities for his team members" (Manager, 2020)</div>
+                <div class="dimension-source">Validation: Direct reports (3), Manager (2), Peer (1) — Strong from those who experienced mentorship</div>
+            </div>
+
+            <div class="dimension-card">
+                <div class="dimension-header">
+                    <span class="dimension-name">Personal Excellence</span>
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="dimension-meta">Found in 10/26 recommendations | All recommender types</div>
+                <div class="dimension-evidence">"Thoughtful and articulate, exceptionally sharp yet consistently humble—qualities that make strategic dialogue with him both substantive and energizing" (Senior peer, 2026)</div>
+                <div class="dimension-evidence">"Calm demeanor and great analysis skills make him an asset in any top tier company. One of the best partners/peers I've worked with... Can-do attitude. Patient. Open-minded. Overall, AWESOME GUY!!!" (Peer, 2020)</div>
+                <div class="dimension-source">Validation: Manager (3), Peer (4), Skip-level (2), Direct report (1) — Consistent across all levels and eras</div>
+            </div>
+
+            <div class="narrative">
+                <strong>Career Arc & Evolution:</strong><br><br>
+                Pattern of consistent scope expansion: eBay (Search Science, platform evolution) → Vudu (streaming media, product leadership) → Walmart/Endeavor (digital entertainment, marketplace expansion) → Ingram Micro (B2B marketplace, platform scaling, AI/agent systems). Early strengths in analytical depth and execution have deepened; recent work adds platform/ecosystem thinking, organizational design capability, and ability to build teams at scale. Intellectual rigor has matured into strategic wisdom. Leadership style has evolved from peer collaboration to developing and scaling teams.
+            </div>
+
+            <div class="section-title">Positioning for Different Roles</div>
+            
+            <div class="assessment-grid">
+                <div class="assessment-card">
+                    <div class="assessment-label">Best Fit Roles</div>
+                    <div class="assessment-value">Director/VP Product</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Company Stage</div>
+                    <div class="assessment-value">Growth → Scale</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Domain Strength</div>
+                    <div class="assessment-value">Marketplaces, B2B SaaS</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Key Differentiator</div>
+                    <div class="assessment-value">Strategy + Execution + People</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXECUTIVE MODE -->
+        <div id="executive" class="content">
+            <div class="print-note">
+                💡 Use this framework when applying for VP/Director roles. Emphasize the tier-level strengths in interviews and cover letters.
+            </div>
+
+            <div class="summary-box">
+                <strong>Executive Summary (VP Product / Director Level)</strong><br><br>
+                Strategic executive with exceptional intellectual rigor and execution discipline. All three executive leadership tiers are strong. Rare combination: first-principles strategic thinking + ability to move from ideation to delivery while developing talent. Successfully navigated 5 different companies across 18 years, learning new domains rapidly. Ready for VP/Director scope with potential for broader executive roles.
+            </div>
+
+            <div class="section-title">Three-Tier Assessment</div>
+
+            <div class="tier-section strategic">
+                <div class="tier-title">
+                    Strategic Leadership
+                    <span class="tier-score strategic">✓✓✓ All Strong</span>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Vision & Strategy
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Sophisticated perspective on ecommerce, marketplace economics, and streaming media models; approaches complex systems with nuance, intellectual honesty, and mature appreciation for long-term value creation" (Senior peer, 2026)</div>
+                    <div class="competency-evidence">"Sets direction for platform evolution; distills complex system challenges into clear strategic direction" (Manager, 2025)</div>
+                    <div class="competency-source">Sources: Manager (2), Peer (2), Customer (1) | Consistent across 18-year career</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Execution at Scale
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Executes zero-to-one with speed and precision; drove complex roadmap across dozen+ platforms while maintaining quality metrics" (Manager, 2020)</div>
+                    <div class="competency-evidence">"Led Hyperscaler AWS integration and Vendor Unite migration at Ingram—both high-stakes, multi-stakeholder initiatives" (Peer, 2025)</div>
+                    <div class="competency-source">Sources: Manager (3), Peer (2), Skip-level (1) | Validated repeatedly at scale</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Customer & Market Insight
+                        <span class="star-rating">⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Advocates for customer in complex tradeoffs; listens to Voice of Customer as core consideration" (Direct report, 2020)</div>
+                    <div class="competency-evidence">"Understands marketplace economics deeply; recognizes how aligned incentives and disciplined governance drive durable platform advantage" (Senior peer, 2026)</div>
+                    <div class="competency-source">Sources: Manager (2), Designer (2), Customer (1), Peer (1)</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+            </div>
+
+            <div class="tier-section people">
+                <div class="tier-title">
+                    People Leadership
+                    <span class="tier-score people">✓✓✓ All Strong</span>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Team Building & Talent Development
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Grew product management team from 4 to 10; hired strategically, evolved role assignments for innovation, provided professional development opportunities" (Manager, 2020)</div>
+                    <div class="competency-evidence">"Mentorship taught me mastery of the PM craft; his guidance was transformative" (Direct report, 2020)</div>
+                    <div class="competency-source">Sources: Direct reports (3), Manager (2), Peer (1) | Strongest signals from those who experienced his leadership directly</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Cross-Functional Influence & Alignment
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Pulls together cross-functional teams; leads in-depth presentations with executive leadership; consistently drives key prioritization" (Peer, 2020)</div>
+                    <div class="competency-evidence">"Effective collaborator across engineering, operations, marketing, merchandising, finance, and more" (Manager, 2020)</div>
+                    <div class="competency-source">Sources: Manager (3), Peer (4), Engineer (1), Designer (1), Marketer (1), Customer (1) | Exceptional breadth and diversity of sources</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Learning Agility & Adaptability
+                        <span class="star-rating">⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">Successfully navigated career arc: eBay (search, platforms) → Vudu (streaming media) → Walmart/Endeavor (digital entertainment) → Ingram (B2B marketplaces, AI systems). Each transition shows rapid learning and domain mastery.</div>
+                    <div class="competency-evidence">"Navigated team and roadmap through ambiguity and obstacles; adaptive approach to problem-solving" (Direct report, 2020)</div>
+                    <div class="competency-source">Career trajectory validated across 18 years | Recent adaptability to AI/agentic systems</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+            </div>
+
+            <div class="tier-section foundational">
+                <div class="tier-title">
+                    Foundational Excellence
+                    <span class="tier-score foundational">✓✓✓ All Strong</span>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Intellectual Rigor & Judgment
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"First-principles driven, structurally rigorous, analyzes and comprehends problems deeply" (Multiple recommenders, 2008–2026)</div>
+                    <div class="competency-evidence">"Intellectual depth evident not as credential, but as cognitive framework—analytical, first-principles driven, approaches systems with nuance" (Senior peer, 2026)</div>
+                    <div class="competency-source">Sources: Manager (3), Peer (4), Customer (1), Skip-level (1) | Consistent across entire career arc</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Presence & Communication
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Articulate, thoughtful, exceptionally sharp yet consistently humble" (Senior peer, 2026)</div>
+                    <div class="competency-evidence">"Calm, composed, clear communicator who creates confidence and inspires through bearing" (Multiple, across eras)</div>
+                    <div class="competency-source">Sources: Manager (2), Peer (4), Skip-level (2), Direct report (1) | Validated across all relationship types</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+
+                <div class="competency-item">
+                    <div class="competency-name">
+                        Integrity, Humility & Trust
+                        <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="competency-evidence">"Humble, intellectually honest, no ego; listens to feedback; admits what they don't know" (Senior peer, 2026)</div>
+                    <div class="competency-evidence">"Humble, patient, open-minded; pleasure to work with; consistently respectful across all interactions" (Peer, 2020)</div>
+                    <div class="competency-source">Sources: Manager (2), Peer (3), Skip-level (1), Direct report (1) | Consistent personal brand across career</div>
+                    <div class="competency-readiness">✓ Advanced executive readiness</div>
+                </div>
+            </div>
+
+            <div class="narrative">
+                <strong>Executive Assessment:</strong><br><br>
+                You are exceptionally well-positioned for VP Product or Director-level roles. All three tiers are strong, which is rare. Your tier-level balance suggests you can handle both strategic complexity and people leadership simultaneously. Particular differentiators: deep systems thinking in marketplaces/platforms + proven ability to execute at scale + demonstrated people development capability. Ready for broader executive scope (potential GM or VP General Management at scale).
+            </div>
+
+            <div class="narrative">
+                <strong>Interview Positioning (VP Product):</strong><br><br>
+                <strong>What to emphasize:</strong><br>
+                1. Specific examples of marketplace/platform economics thinking (demonstrates strategic vision)<br>
+                2. Zero-to-one delivery track record with complexity (Hyperscaler integration, Vendor Unite migration)<br>
+                3. Team building and development at scale (4→10 product team, mentorship impact)<br>
+                4. Navigation of ambiguity across different domains (5 companies, each requiring new learning)<br>
+                5. Cross-functional influence validated by engineers, designers, marketers, executives
+            </div>
+
+            <div class="assessment-grid">
+                <div class="assessment-card">
+                    <div class="assessment-label">Tier Balance</div>
+                    <div class="assessment-value">Perfect</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Readiness</div>
+                    <div class="assessment-value">VP/Director</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Strongest Tier</div>
+                    <div class="assessment-value">All (Balanced)</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Development Area</div>
+                    <div class="assessment-value">Org Design</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REFORGE PM MODE -->
+        <div id="reforge" class="content">
+            <div class="print-note">
+                💡 Use this framework when applying for Senior PM, PM Manager, or Director PM roles. Shows your PM-specific competencies and archetype.
+            </div>
+
+            <div class="summary-box">
+                <strong>PM Competency Profile (Reforge Framework)</strong><br><br>
+                Exceptional PM profile across all eight core competencies. Archetype: Balanced Strategic-Execution PM (strong in both vision and delivery—rare). Validated by diverse recommender types (managers, peers, engineers, designers, customers). Competency maturity suggests readiness for Senior PM → PM Manager → Director PM trajectory.
+            </div>
+
+            <div class="section-title">Eight PM Competencies</div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Product Strategy & Vision
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Distill complex system challenges into clear strategic direction. Deep expertise in cloud technologies, combined with strong product intuition, enables him to consistently identify right opportunities and execute with clarity" (Designer, 2025)</div>
+                <div class="competency-evidence">"Sophisticated perspective on ecommerce, marketplace economics, and streaming media models; approaches complex systems with nuance" (Senior peer, 2026)</div>
+                <div class="competency-source">Sources: Manager (2), Peer (2), Customer (1) | Validated from multiple perspectives</div>
+                <div class="competency-readiness">✓ Advanced readiness — Can mentor others on strategy</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Execution & Delivery
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Excellent job as a technical product leader taking an initiative from zero to one. Brings clarity to complex situations and moves development forward" (Peer, 2026)</div>
+                <div class="competency-evidence">"Delivers month over month while managing complex dependencies, maintaining quality metrics" (Manager, 2020)</div>
+                <div class="competency-source">Sources: Manager (3), Peer (2), Skip-level (1) | Repeatedly validated at scale</div>
+                <div class="competency-readiness">✓ Advanced readiness — Rare combination of speed + quality</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Data & Analytics
+                    <span class="star-rating">⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Very good product manager who also has significant depth in data analysis" (Manager, 2013)</div>
+                <div class="competency-evidence">"Analytic sense and attention to detail... strong understanding of impact measurement" (Peer, 2013)</div>
+                <div class="competency-source">Sources: Manager (2), Peer (1) | Primary evidence from 2010–2013 era</div>
+                <div class="competency-readiness">⚠ Intermediate readiness — Solid foundation; recommend refresh/deepening for Director PM roles</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    User Research & Discovery
+                    <span class="star-rating">⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Never failed to listen to the Voice of Customer as a consideration when working on product features" (Direct report, 2020)</div>
+                <div class="competency-evidence">"Listens to the customer with utmost patience and focus day after day, noting down even their most minor frustrations" (Customer, 2010)</div>
+                <div class="competency-source">Sources: Manager (2), Peer (2), Customer (2), Designer (1) | Strong validation from external stakeholders</div>
+                <div class="competency-readiness">✓ Advanced readiness — Can mentor others on customer empathy</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Design Collaboration
+                    <span class="star-rating">⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Partners exceptionally well with design, bringing thoughtful, respectful, highly collaborative approach. Not only advocates for strong UX principles, but actively helps shape solutions by balancing user needs, business goals, technical constraints" (Designer, 2025)</div>
+                <div class="competency-source">Sources: Designer (2, primary validation) | Consider expanding visibility among other PMs</div>
+                <div class="competency-readiness">✓ Advanced readiness — Design partnership is genuine strength</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Technical Acumen & Systems Thinking
+                    <span class="star-rating">⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Strong application development background provides innovative product features" (Manager, 2012)</div>
+                <div class="competency-evidence">"Understands technical architecture of platforms deeply; makes informed technical tradeoffs" (Implied across role context)</div>
+                <div class="competency-source">Sources: Manager (1 explicit), Engineering context validated | Platform/marketplace work demonstrates systems thinking</div>
+                <div class="competency-readiness">✓ Intermediate-Advanced — Can deepen in next role</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Cross-Functional Leadership & Influence
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Collaborates effectively across all functions. One of the best partners/peers I've worked with" (Peer, 2020)</div>
+                <div class="competency-evidence">"Pulls together cross-functional teams and leads in-depth presentations with executive leadership" (Peer, 2020)</div>
+                <div class="competency-source">Sources: Manager (3), Peer (4), Designer (1), Customer (1) | Exceptional breadth of stakeholder validation</div>
+                <div class="competency-readiness">✓ Advanced readiness — Rare to have this validation from designers, engineers, customers, and execs</div>
+            </div>
+
+            <div class="competency-item">
+                <div class="competency-name">
+                    Communication & Articulation
+                    <span class="star-rating">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="competency-evidence">"Articulate, thoughtful, exceptionally sharp yet consistently humble" (Senior peer, 2026)</div>
+                <div class="competency-evidence">"Clear presenter who creates confidence; excellent at distilling complex information for different audiences" (Manager, 2020)</div>
+                <div class="competency-source">Sources: Manager (2), Peer (2), Skip-level (1) | Validated across communication contexts</div>
+                <div class="competency-readiness">✓ Advanced readiness — Can teach storytelling and communication</div>
+            </div>
+
+            <div class="archetype-box">
+                <strong>PM Archetype: Balanced Strategic-Execution PM</strong><br><br>
+                You combine strong strategy (marketplace economics, vision-setting, systems thinking) with exceptional delivery (zero-to-one, shipping, maintaining quality). This is rare. Most PMs are strong in one or the other. Your archetype: "Strategic Operator" who can both define where to go and ensure the organization gets there reliably. Best suited for: scaling products at critical inflection points, taking new platforms to market, or building product organizations in complex domains (B2B marketplaces, platforms, infrastructure).
+            </div>
+
+            <div class="narrative">
+                <strong>Reforge Stage Assessment:</strong><br><br>
+                <strong>Current stage:</strong> Senior PM / PM Manager ready (most competencies at advanced level)<br><br>
+                <strong>Gaps for Director PM roles:</strong> Organizational design and product leadership at scale (mentoring PM teams, building PM culture, org scaling)<br><br>
+                <strong>What to emphasize in interviews:</strong><br>
+                • Breadth of competencies (rare—most PMs have 1–2 strong areas)<br>
+                • Depth in strategy + execution (very rare combination)<br>
+                • Cross-functional credibility across all major functions<br>
+                • Design partnership and user empathy<br>
+                • Ability to ship complex initiatives with quality maintained<br><br>
+                <strong>For Director PM transition:</strong> Emphasize team building at Vudu (4→10), mentorship impact on direct reports, work building Experience Platform org at Ingram
+            </div>
+
+            <div class="assessment-grid">
+                <div class="assessment-card">
+                    <div class="assessment-label">Archetype</div>
+                    <div class="assessment-value">Strategic-Execution</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Current Readiness</div>
+                    <div class="assessment-value">Senior PM / PM Manager</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Competencies at Advanced</div>
+                    <div class="assessment-value">7 of 8</div>
+                </div>
+                <div class="assessment-card">
+                    <div class="assessment-label">Key Differentiator</div>
+                    <div class="assessment-value">Rare balance</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>About this analysis:</strong> Synthesized from 26 public LinkedIn recommendations spanning 18 years (2008–2026) across 7 recommender types (managers, peers, direct reports, customers, engineers, designers, skip-level). Analyzed across three frameworks: Universal (7 dimensions), Executive (9 dimensions, 3 tiers), and Reforge PM (8 competencies).</p>
+            <p style="margin-top: 1rem;">Generated with linkedin-360-analysis skill | Last updated May 2026</p>
+        </div>
+    </div>
+
+    <script>
+        function switchFramework(framework) {
+            // Hide all content
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.framework-btn').forEach(el => el.classList.remove('active'));
+            
+            // Show selected content
+            document.getElementById(framework).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

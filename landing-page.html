@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn 360-Degree Analysis Skill | Free Claude Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f3f0 0%, #faf8f6 100%);
+            color: #3d3d3a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #042C53, #185FA5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: #888780;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            background: #042C53;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: background 0.2s;
+        }
+        
+        .cta-primary:hover {
+            background: #185FA5;
+        }
+        
+        .cta-secondary {
+            display: inline-block;
+            background: white;
+            color: #042C53;
+            padding: 12px 32px;
+            border: 2px solid #042C53;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .cta-secondary:hover {
+            background: #f5f3f0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 1px solid #e0ddd6;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s;
+        }
+        
+        .feature-card:hover {
+            border-color: #042C53;
+            box-shadow: 0 4px 12px rgba(4, 44, 83, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 0.75rem;
+            color: #042C53;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            color: #888780;
+        }
+        
+        .section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0ddd6;
+        }
+        
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 1.5rem;
+            color: #042C53;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0ede5;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: #042C53;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .step h4 {
+            font-size: 16px;
+            margin-bottom: 0.5rem;
+            color: #3d3d3a;
+        }
+        
+        .step p {
+            font-size: 14px;
+            color: #888780;
+        }
+        
+        .frameworks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .framework-card {
+            background: #f5f3f0;
+            border-left: 4px solid #042C53;
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+        
+        .framework-card h4 {
+            font-size: 16px;
+            margin-bottom: 0.75rem;
+            color: #042C53;
+        }
+        
+        .framework-card p {
+            font-size: 13px;
+            color: #5f5e5a;
+            line-height: 1.8;
+        }
+        
+        .code-block {
+            background: #2C2C2A;
+            color: #f0ede5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        
+        .faq {
+            margin: 2rem 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e0ddd6;
+            padding-bottom: 1.5rem;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #042C53;
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-answer {
+            font-size: 14px;
+            color: #5f5e5a;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: #888780;
+            border-top: 1px solid #e0ddd6;
+            margin-top: 4rem;
+        }
+        
+        .footer p {
+            margin: 0.5rem 0;
+            font-size: 13px;
+        }
+        
+        .highlight {
+            background: #f0ede5;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            header {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>LinkedIn 360-Degree Analysis</h1>
+            <p class="tagline">Synthesize your LinkedIn recommendations into a comprehensive strength profile. Free. Uses your tokens.</p>
+            <div>
+                <a href="#quick-start" class="cta-primary">Get Started Now</a>
+                <a href="https://github.com" class="cta-secondary">View on GitHub</a>
+            </div>
+        </header>
+
+        <!-- FEATURES -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Three Frameworks</h3>
+                <p>Analyze across Universal, Executive, or Reforge PM frameworks. Pick the one that matches your goal.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Private</h3>
+                <p>Your data only goes to Claude. Zero tracking. Zero third-party servers. Completely decentralized.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Completely Free</h3>
+                <p>Uses your Claude tokens. No sign-up. No accounts. No infrastructure costs. Zero to you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Results</h3>
+                <p>Paste recommendations, get analysis in 30 seconds. Export to HTML to share with recruiters.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Multi-Perspective</h3>
+                <p>Recognizes manager vs. peer vs. direct report signals. Shows recommender diversity.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Actionable Insights</h3>
+                <p>Generates interview talking points. Shows what to emphasize for specific roles.</p>
+            </div>
+        </div>
+
+        <!-- QUICK START -->
+        <div class="section" id="quick-start">
+            <h2>Quick Start (2 minutes)</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Get your recommendations</h4>
+                    <p>Go to your LinkedIn profile, scroll to recommendations, copy all the text.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Open Claude</h4>
+                    <p>Go to <span class="highlight">claude.ai</span> and start a new chat.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Paste and analyze</h4>
+                    <p>Paste the skill + your recommendations into Claude with your preferred framework.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Get results</h4>
+                    <p>Claude analyzes and provides insights. Ask for HTML to share with recruiters.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #042C53;">Example Prompt</h3>
+            <div class="code-block">I'm using the linkedin-360-analysis skill. Here are my recommendations:
+
+[PASTE YOUR RECOMMENDATIONS HERE]
+
+Please analyze using the Executive framework mode.</div>
+        </div>
+
+        <!-- THREE FRAMEWORKS -->
+        <div class="section">
+            <h2>Three Analysis Frameworks</h2>
+            
+            <div class="frameworks">
+                <div class="framework-card">
+                    <h4>Universal Mode</h4>
+                    <p><strong>Best for:</strong> Understanding your overall strengths and positioning.</p>
+                    <p style="margin-top: 0.75rem;"><strong>Analyzes:</strong> 7 core dimensions (intellectual depth, execution, technical mastery, customer obsession, cross-functional leadership, people development, personal excellence)</p>
+                    <p style="margin-top: 0.75rem;"><strong>Output:</strong> Dimension ratings with evidence, career arc, role positioning</p>
+                </div>
+                
+                <div class="framework-card">
+                    <h4>Executive Mode</h4>
+                    <p><strong>Best for:</strong> VP/Director interviews and executive positioning.</p>
+                    <p style="margin-top: 0.75rem;"><strong>Analyzes:</strong> 9 dimensions across 3 tiers (Strategic Leadership, People Leadership, Foundational Excellence)</p>
+                    <p style="margin-top: 0.75rem;"><strong>Output:</strong> Tier scorecard, interview emphasis points, executive readiness assessment</p>
+                </div>
+                
+                <div class="framework-card">
+                    <h4>Reforge PM Mode</h4>
+                    <p><strong>Best for:</strong> Product managers targeting Senior PM or PM Manager roles.</p>
+                    <p style="margin-top: 0.75rem;"><strong>Analyzes:</strong> 8 PM competencies (strategy, execution, data, user research, design, technical, cross-functional, communication)</p>
+                    <p style="margin-top: 0.75rem;"><strong>Output:</strong> PM competency ratings, archetype analysis, stage readiness</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="section">
+            <h2>How It Works</h2>
+            
+            <h3 style="margin-bottom: 1rem; color: #3d3d3a; font-size: 18px;">No Installation. No Servers. Just Copy & Paste.</h3>
+            
+            <p style="margin-bottom: 1.5rem; font-size: 15px;">
+                The skill is a Claude prompt template. You copy it, paste it into Claude along with your recommendations, and Claude analyzes them. That's it. No infrastructure needed. No tokens charged to me. It runs entirely on your Claude subscription.
+            </p>
+            
+            <h3 style="margin: 2rem 0 1rem; color: #3d3d3a; font-size: 18px;">Token & Cost Flow</h3>
+            
+            <div style="background: #f5f3f0; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="font-size: 14px; line-height: 2;"><strong>You (Skill Creator)</strong><br>↓<br><strong>Share the skill file</strong><br>↓<br><strong>Friend/Colleague (User)</strong><br>↓<br><strong>Pastes into Claude.ai</strong><br>↓<br><strong>Claude processes using THEIR tokens</strong><br>↓<br><strong>You pay NOTHING. They pay for tokens (or use free tier).</strong></p>
+            </div>
+        </div>
+
+        <!-- EXAMPLE OUTPUT -->
+        <div class="section">
+            <h2>Example Output</h2>
+            
+            <p style="margin-bottom: 1.5rem;">
+                Here's what you get when you run an analysis. The skill provides structured insights like:
+            </p>
+            
+            <div style="background: #f0ede5; padding: 1.5rem; border-left: 4px solid #042C53; border-radius: 6px; margin-bottom: 1rem;">
+                <p><strong>Executive Summary</strong></p>
+                <p style="margin-top: 0.75rem; font-size: 14px;">
+                    "You are exceptionally well-positioned for VP Product or Director-level roles. All three tiers are strong, which is rare. Your tier-level balance suggests you can handle both strategic complexity and people leadership simultaneously. Particular differentiators: deep systems thinking + ability to execute at scale + demonstrated people development capability."
+                </p>
+            </div>
+            
+            <div style="background: #f0ede5; padding: 1.5rem; border-left: 4px solid #042C53; border-radius: 6px; margin-bottom: 1rem;">
+                <p><strong>Interview Positioning</strong></p>
+                <p style="margin-top: 0.75rem; font-size: 14px;">
+                    "What to emphasize: (1) Specific examples of marketplace economics thinking, (2) Zero-to-one delivery track record with complexity, (3) Team building and development at scale, (4) Navigation of ambiguity across different domains, (5) Cross-functional influence validated by engineers, designers, marketers, executives"
+                </p>
+            </div>
+            
+            <p style="text-align: center; margin-top: 1.5rem;">
+                <a href="example-output.html" style="color: #042C53; font-weight: 600;">See full example output →</a>
+            </p>
+        </div>
+
+        <!-- USE CASES -->
+        <div class="section">
+            <h2>Who This Is For</h2>
+            
+            <div style="margin: 2rem 0;">
+                <h4 style="color: #042C53; margin-bottom: 0.75rem;">Job Candidates</h4>
+                <p style="font-size: 14px; color: #5f5e5a; margin-bottom: 1.5rem;">Prepping for executive interviews? Understand your strengths profile, generate talking points, differentiate yourself from other candidates.</p>
+                
+                <h4 style="color: #042C53; margin-bottom: 0.75rem;">Career Transitions</h4>
+                <p style="font-size: 14px; color: #5f5e5a; margin-bottom: 1.5rem;">Moving into a new domain or role level? See how your recommenders perceive your transferable strengths across different functions.</p>
+                
+                <h4 style="color: #042C53; margin-bottom: 0.75rem;">Product Managers</h4>
+                <p style="font-size: 14px; color: #5f5e5a; margin-bottom: 1.5rem;">Want to understand your PM archetype? See which PM competencies are strongest and what you need to develop for promotion.</p>
+                
+                <h4 style="color: #042C53; margin-bottom: 0.75rem;">Coaches & Recruiters</h4>
+                <p style="font-size: 14px; color: #5f5e5a; margin-bottom: 1.5rem;">Offer this as a client deliverable. Quickly understand candidate strengths from public feedback.</p>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section">
+            <h2>FAQ</h2>
+            
+            <div class="faq">
+                <div class="faq-item">
+                    <div class="faq-question">Q: Do I need a Claude API key?</div>
+                    <div class="faq-answer">A: No. Use claude.ai (web interface) for free. If you have Pro, it's included. API users can use their own key if they have one.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: How many recommendations do I need?</div>
+                    <div class="faq-answer">A: 10+ recommended for meaningful patterns. Works with as few as 5, but signal is clearer with more. 20+ recommendations give the strongest analysis.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Is my data safe?</div>
+                    <div class="faq-answer">A: Completely. Your data only goes to Claude (Anthropic's API). It doesn't touch this site, my servers, or any third party. No tracking, no data collection.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Can I use this for other feedback types?</div>
+                    <div class="faq-answer">A: Yes. The framework is modular. You can adapt it for peer reviews, customer testimonials, 360 feedback, or any multi-source feedback analysis.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: How long does analysis take?</div>
+                    <div class="faq-answer">A: 30–60 seconds depending on recommendation length and Claude's response time.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Can I customize the frameworks?</div>
+                    <div class="faq-answer">A: Absolutely. The skill is open-source. You can modify dimensions, add new frameworks, or adapt for your use case.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Can I offer this as a service or charge for it?</div>
+                    <div class="faq-answer">A: Yes. The skill is MIT licensed. You can run analyses for others, generate HTML outputs, and offer it as a coaching/recruitment service.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA SECTION -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #f5f3f0, #faf8f6);">
+            <h2>Ready to analyze your strengths?</h2>
+            <p style="font-size: 16px; color: #5f5e5a; margin: 1rem 0 2rem;">
+                Get the skill, follow the quick start guide, and understand how people actually perceive your strengths.
+            </p>
+            <a href="#quick-start" class="cta-primary" style="font-size: 16px; padding: 14px 36px;">Get Started</a>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>LinkedIn 360-Degree Analysis Skill</strong></p>
+            <p>Open-source. MIT licensed. Free to use, modify, and share.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://github.com" style="color: #042C53; text-decoration: none; font-weight: 500;">GitHub</a> · 
+                <a href="#" style="color: #042C53; text-decoration: none; font-weight: 500;">Documentation</a> · 
+                <a href="#" style="color: #042C53; text-decoration: none; font-weight: 500;">Example</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
